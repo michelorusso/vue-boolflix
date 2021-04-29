@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boolfix</title>
+    <title>Boolflix</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -22,8 +25,76 @@
 <body>
         
     <div id="root">
+        <div class="wrapper">
 
+            <!-- SEARCH-BAR -->
+            <section class="search-bar">
 
+                <!-- Title -->
+                <div>
+                    <h1>BOOLFLIX</h1>
+                </div>
+                <!-- Title -->
+
+                <!-- Nav-bar -->
+                <div class="nav-bar">
+
+                    <label for="search"></label>
+                    <input
+                        id="search" 
+                        type="text" 
+                        placeholder="Search"
+                        v-model="title">
+                    <button @click="searchMovie"><i class="fas fa-search"></i></button>
+
+                </div>
+                <!-- Nav-bar -->
+
+            </section>
+            <!-- END SEARCH-BAR -->
+
+            <!-- MOVIE-CONTAINER -->
+            <section class="movie-container">
+
+                <!-- Movie-content -->
+                <div class="movie-content" v-if="listMovie.length > 0">
+                    
+                    <ul class="menu">
+
+                        <!-- Single-movie -->
+                        <li class="single-movie" v-for=" movie in listMovie[0] ">
+
+                            
+                            <div>
+                                {{ movie.title }} {{ movie.original_name}} {{ movie.name}}
+                            </div>
+
+                            <div>
+                                {{ movie.original_title }}
+                            </div>
+
+                            <div>
+                                {{ movie.original_language }}
+                            </div>
+
+                            <div>
+                                {{ movie.vote_average }}
+                            </div>
+                            
+                        </li>
+                        <!--End Single-movie -->
+
+                    </ul>
+
+                </div>
+                <!-- Movie-content -->
+
+                <div v-else>Find your movie or serie Tv</div>
+
+            </section>
+            <!-- MOVIE-CONTAINER -->
+
+        </div>
     </div>
     
     <!-- JAVASCRIPT -->
