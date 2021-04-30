@@ -68,14 +68,22 @@ h1 {
     padding: 20px;
 }
 
-/* MOvie-content */
-.movie-content .menu {
+/* MOvie-content & TV-content */
+.movie-content .menu,
+.tv-content .menu {
     list-style-type: none;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+.tv-content {
+    margin-top: 20px;
+}
+
+h2 {
+    margin-left: 25px;
+}
 .menu .single-movie {
     margin: 10px;
     width: 300px;
@@ -99,4 +107,8 @@ h1 {
 .lang img{
     width: 25px;
     margin-left: 10px;
+}
+
+.initial {
+    text-align: center;
 }

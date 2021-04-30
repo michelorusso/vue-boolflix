@@ -44,7 +44,8 @@
                         id="search" 
                         type="text" 
                         placeholder="Search"
-                        v-model="title">
+                        v-model="title"
+                        @keyup.enter="searchMovie">
                     <button @click="searchMovie"><i class="fas fa-search"></i></button>
 
                 </div>
@@ -59,6 +60,10 @@
                 <!-- Movie-content -->
                 <div class="movie-content" v-if="listMovie.length > 0">
                     
+                    
+                    <h2>MOVIE</h2>
+                            
+
                     <ul class="menu">
 
                         <!-- Single-movie -->
@@ -92,7 +97,47 @@
                 </div>
                 <!-- Movie-content -->
 
-                <div v-else>Find your movie or serie Tv</div>
+                <!-- TV-content -->
+                <div class="tv-content" v-if="listTvSeries.length > 0">
+                    
+                    
+                    <h2>TV Series</h2>
+                            
+
+                    <ul class="menu">
+
+                        <!-- Single-movie -->
+                        <li class="single-movie" v-for=" tv in listTvSeries[0] ">
+
+                            <ul class="info-menu">
+
+                                <li>
+                                    Title: <span>{{ tv.name }}</span>
+                                </li>
+
+                                <li>
+                                    Original Title: <span>{{ tv.original_name }}</span>
+                                </li>
+
+                                <li class="lang">
+                                    <span>Language: </span><span ><img :src="'flags/' + tv.original_language + '.svg'" :alt="tv.original_language"></span>
+                                </li>
+
+                                <li>
+                                    <span>Vote: </span>{{ tv.vote_average }}
+                                </li>
+
+                            </ul>
+
+                        </li>
+                        <!--End Single-movie -->
+
+                    </ul>
+
+                </div>
+                <!-- TV-content -->
+
+                <div class="initial" v-else>SEARCH YOUR MOVIE OR TV SERIES</div>
 
             </section>
             <!-- MOVIE-CONTAINER -->

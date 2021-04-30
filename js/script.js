@@ -19,11 +19,14 @@ var app = new Vue(
     el: '#root',
     data: {  
         listMovie: [],
+        listTvSeries: [],
         title: '',
     }, 
     methods: {
+        // searchMovie --> function that, when clicked, searches for a movie / TV series based on user input
         searchMovie() {
 
+            // search Movie
             axios.get('https://api.themoviedb.org/3/search/movie', {
                         params: {
                             api_key: 'e56155409e3774c5176290779eef0727',
@@ -38,9 +41,27 @@ var app = new Vue(
 
                             console.log('listMovie' ,this.listMovie)
                         });
+            
+            // search Tv Series
+            axios.get('https://api.themoviedb.org/3/search/tv', {
+                params: {
+                    api_key: 'e56155409e3774c5176290779eef0727',
+                    query: this.title,
+                    page: 1,
+                }
+            })
+                .then((response) => {
 
-                    this.title = '';
-                    this.listMovie = [];
+                    const obj = response.data;
+                    this.listTvSeries.push(obj.results);
+
+                    console.log('listTvSeries' ,this.listTvSeries)
+                });
+
+                // Reset
+                this.title = '';
+                this.listMovie = [];
+                this.listTvSeries = [];
 
 
         }
