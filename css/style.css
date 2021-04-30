@@ -29,10 +29,9 @@ img {
     justify-content: space-between;
 }
 
-/* Title */
-h1 {
-    color: red;
-    font-size: 35px;
+/* Logo*/
+.logo img {
+    width: 170px;
 }
 
 /* Nav-bar */
