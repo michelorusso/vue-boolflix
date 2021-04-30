@@ -8,7 +8,7 @@
 /* COMMON */ 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: black;
+    background-color: #131313;
 }
 
 img {
@@ -23,7 +23,7 @@ img {
 /* SEARCH-BAR */
 .search-bar {
     padding: 15px 30px;
-    border-bottom: 1px solid rgb(54, 54, 54);
+    background-image: linear-gradient(180deg, black, #131313);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,13 +50,13 @@ h1 {
 
 .nav-bar input {
     margin: 0 10px;
-    background-color: black;
+    background-color: rgba(0 , 0, 0, 0);
     color: white;
     border-bottom: 1px solid rgb(54, 54, 54);
 }
 
 .nav-bar button {
-    background-color: black;
+    background-color: rgba(0 , 0, 0, 0);
     color: white;
     cursor: pointer;
 }
@@ -65,6 +65,27 @@ h1 {
 .nav-bar input:focus,
 .nav-bar button:focus {
     outline: none;
+}
+
+/* nav-movie-tv */
+.nav-movie-tv {
+    flex-grow: 1;
+    margin-left: 50px;
+}
+
+.nav-movie-tv .menu{
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-movie-tv li {
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.nav-movie-tv .genre {
+    font-size: 13px;
 }
 
 /* MOVIE_CONTAINER */
@@ -85,14 +106,12 @@ h1 {
     margin-top: 20px;
 }
 
-h2 {
-    margin-left: 25px;
-}
 .menu .single-movie {
     margin: 10px;
     width: 300px;
     height: 450px;
-    border: 1px solid rgb(54, 54, 54);
+    background-color: black;
+    box-shadow: 0 0 10px rgb(54, 54, 54);
     position: relative;
     overflow: hidden;
 }
