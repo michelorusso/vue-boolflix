@@ -11,6 +11,10 @@ body {
     background-color: black;
 }
 
+img {
+    width: 100%;
+}
+
 .wrapper {
     color: white;
     width: 100%;
@@ -87,16 +91,15 @@ h2 {
 .menu .single-movie {
     margin: 10px;
     width: 300px;
+    height: 450px;
     border: 1px solid rgb(54, 54, 54);
+    position: relative;
+    overflow: hidden;
 }
 
 .info-menu {
     padding: 10px;
     list-style-type: none;
-}
-
-.info-menu li {
-    padding: 5px 0;
 }
 
 .lang {
@@ -111,4 +114,28 @@ h2 {
 
 .initial {
     text-align: center;
+}
+
+.single-movie li {
+    padding: 5px 0;
+}
+
+.single-movie .key-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+
+.key-visual img {
+    height: 450px;
+}
+
+.single-movie:hover .key-visual {
+    display: none;
+}
+
+.stars {
+    color: yellow;
+    padding: 0 2px;
 }

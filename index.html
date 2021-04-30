@@ -58,18 +58,20 @@
             <section class="movie-container">
 
                 <!-- Movie-content -->
-                <div class="movie-content" v-if="listMovie.length > 0">
-                    
+                <div class="movie-content" v-if="listMovie.length > 0">                  
                     
                     <h2>MOVIE</h2>
                             
-
                     <ul class="menu">
 
                         <!-- Single-movie -->
                         <li class="single-movie" v-for=" movie in listMovie[0] ">
 
                             <ul class="info-menu">
+
+                                <li  class="key-visual" v-if="movie.poster_path">
+                                        <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" :alt="movie.title">
+                                </li>
 
                                 <li>
                                     Title: <span>{{ movie.title }}</span>
@@ -84,7 +86,11 @@
                                 </li>
 
                                 <li>
-                                    <span>Vote: </span>{{ movie.vote_average }}
+                                    Vote: 
+                                    <span v-if="movie.vote_average > 0" >
+                                        <i class="fas fa-star stars" v-for="star in Math.ceil(movie.vote_average / 2)"></i>
+                                    </span>
+                                    <span v-else="movie.vote_average = 0">unavailable</span>
                                 </li>
 
                             </ul>
@@ -111,6 +117,10 @@
 
                             <ul class="info-menu">
 
+                                <li  class="key-visual" v-if="tv.poster_path">
+                                    <img :src="'https://image.tmdb.org/t/p/w300' + tv.poster_path" :alt="tv.name">
+                            </li>
+
                                 <li>
                                     Title: <span>{{ tv.name }}</span>
                                 </li>
@@ -124,8 +134,13 @@
                                 </li>
 
                                 <li>
-                                    <span>Vote: </span>{{ tv.vote_average }}
+                                    Vote: 
+                                    <span v-if="tv.vote_average > 0">
+                                        <i class="fas fa-star stars" v-for="star in Math.ceil(tv.vote_average / 2)"></i>
+                                    </span>
+                                    <span v-else="tv.vote_average = 0">unavailable</span>
                                 </li>
+
 
                             </ul>
 
