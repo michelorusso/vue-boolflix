@@ -64,23 +64,26 @@
                         <!-- Single-movie -->
                         <li class="single-movie" v-for=" movie in listMovie[0] ">
 
-                            
-                            <div>
-                                {{ movie.title }} {{ movie.original_name}} {{ movie.name}}
-                            </div>
+                            <ul class="info-menu">
 
-                            <div>
-                                {{ movie.original_title }}
-                            </div>
+                                <li>
+                                    Title: <span>{{ movie.title }}</span>
+                                </li>
 
-                            <div>
-                                {{ movie.original_language }}
-                            </div>
+                                <li>
+                                    Original Title: <span>{{ movie.original_title }}</span>
+                                </li>
 
-                            <div>
-                                {{ movie.vote_average }}
-                            </div>
-                            
+                                <li class="lang">
+                                    <span>Language: </span><span ><img :src="'flags/' + movie.original_language + '.svg'" :alt="movie.original_language"></span>
+                                </li>
+
+                                <li>
+                                    <span>Vote: </span>{{ movie.vote_average }}
+                                </li>
+
+                            </ul>
+
                         </li>
                         <!--End Single-movie -->
 

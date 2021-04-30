@@ -8,14 +8,12 @@
 /* COMMON */ 
 body {
     font-family: 'Roboto', sans-serif;
-    
+    background-color: black;
 }
 
 .wrapper {
-    background-color: black;
     color: white;
     width: 100%;
-    height: 100vh;
 }
 
 /* SEARCH-BAR */
@@ -74,12 +72,31 @@ h1 {
 .movie-content .menu {
     list-style-type: none;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-
 }
 
 .menu .single-movie {
     margin: 10px;
-    width: calc( ( 100% / 5) - 100px );
+    width: 300px;
     border: 1px solid rgb(54, 54, 54);
+}
+
+.info-menu {
+    padding: 10px;
+    list-style-type: none;
+}
+
+.info-menu li {
+    padding: 5px 0;
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+}
+
+.lang img{
+    width: 25px;
+    margin-left: 10px;
 }
