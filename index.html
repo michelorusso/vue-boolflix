@@ -58,8 +58,8 @@
                         type="text" 
                         placeholder="Search"
                         v-model="title"
-                        @keyup.enter="searchMovie">
-                    <button @click="searchMovie"><i class="fas fa-search"></i></button>
+                        @keyup.enter="searchMovieTv">
+                    <button @click="searchMovieTv"><i class="fas fa-search"></i></button>
 
                 </div>
                 <!-- Nav-bar -->
@@ -76,26 +76,39 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" movie in listMovie[0] ">
+                        <li class="single-movie" v-for=" movie in listMovie ">
 
                             <ul class="info-menu">
 
+                                <!-- Poster -->
                                 <li  class="key-visual" v-if="movie.poster_path">
                                         <img :src="'https://image.tmdb.org/t/p/w300' + movie.poster_path" :alt="movie.title">
                                 </li>
 
+                                <li v-else>
+                                    <div class="no-poster">
+                                        <img class="key-visual" src="flags/c072857f28ffed69c9266a55183f4c20.png" alt="no-poster">
+                                    </div>
+                                </li>
+                                <!--End Poster -->
+
+                                <!-- Title Movie -->
                                 <li>
                                     Title: <span>{{ movie.title }}</span>
                                 </li>
 
-                                <li>
+                                <li v-if="movie.title != movie.original_title">
                                     Original Title: <span>{{ movie.original_title }}</span>
                                 </li>
+                                <!-- End Title Movie -->
 
+                                <!-- Language Movie -->
                                 <li class="lang">
                                     <span>Language: </span><span ><img :src="'flags/' + movie.original_language + '.svg'" :alt="movie.original_language"></span>
                                 </li>
+                                <!-- End Language Movie -->
 
+                                <!-- Vote Average -->
                                 <li>
                                     Vote: 
                                     <span v-if="movie.vote_average > 0" >
@@ -103,6 +116,15 @@
                                     </span>
                                     <span v-else="movie.vote_average = 0">unavailable</span>
                                 </li>
+                                <!-- End Vote Average -->
+
+                                <!-- Overview -->
+                                <li>
+                                    Overview:
+                                    <span v-if="movie.overview.length < 200">{{ movie.overview.substring(0 , 200 ) }}</span>
+                                    <span v-else>{{ movie.overview.substring(0 , 200 ) + '...' }}</span>
+                                </li>
+                                <!-- End Overview -->
 
                             </ul>
 
@@ -120,26 +142,39 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" tv in listTvSeries[0] ">
+                        <li class="single-movie" v-for=" tv in listTvSeries ">
 
                             <ul class="info-menu">
 
+                                <!-- Poster -->
                                 <li  class="key-visual" v-if="tv.poster_path">
                                     <img :src="'https://image.tmdb.org/t/p/w300' + tv.poster_path" :alt="tv.name">
-                            </li>
+                                </li>
 
+                                <li v-else>
+                                    <div class="no-poster">
+                                        <img class="key-visual" src="flags/c072857f28ffed69c9266a55183f4c20.png" alt="no-poster">
+                                    </div>
+                                </li>
+                                <!-- End Poster -->
+
+                                <!-- Title Tv Series-->
                                 <li>
                                     Title: <span>{{ tv.name }}</span>
                                 </li>
 
-                                <li>
+                                <li v-if="tv.name != tv.original_name">
                                     Original Title: <span>{{ tv.original_name }}</span>
                                 </li>
+                                <!-- End Title Tv Series -->
 
+                                <!-- Language Tv Series -->
                                 <li class="lang">
                                     <span>Language: </span><span ><img :src="'flags/' + tv.original_language + '.svg'" :alt="tv.original_language"></span>
                                 </li>
+                                <!-- End Language Tv Series -->
 
+                                <!-- Vote Avereage Tv Series -->
                                 <li>
                                     Vote: 
                                     <span v-if="tv.vote_average > 0">
@@ -147,7 +182,15 @@
                                     </span>
                                     <span v-else="tv.vote_average = 0">unavailable</span>
                                 </li>
+                                <!-- End Vote average Tv Series -->
 
+                                <!-- Overview -->
+                                <li>
+                                    Overview:
+                                    <span v-if="tv.overview.length < 200">{{ tv.overview.substring(0 , 200 ) }}</span>
+                                    <span v-else>{{ tv.overview.substring(0 , 200 ) + '...' }}</span>
+                                </li>
+                                <!-- End Overview -->
 
                             </ul>
 
@@ -158,7 +201,6 @@
 
                 </div>
                 <!-- TV-content -->
-
 
             </section>
             <!-- MOVIE-CONTAINER -->

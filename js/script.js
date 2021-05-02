@@ -36,15 +36,16 @@ var app = new Vue(
         listMovie: [],
         listTvSeries: [],
         title: '',
+        noFound: 'no match found',
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
     methods: {
-        // searchMovie --> function that, when clicked, searches for a movie / TV series based on user input
-        searchMovie() {
+        // searchMovieTv --> function that, when clicked, searches for a movie / TV series based on user input
+        searchMovieTv() {
 
-            // search Movie
-            axios.get('https://api.themoviedb.org/3/search/movie', {
+            // search Movie or Tv Series
+            axios.get('https://api.themoviedb.org/3/search/multi', {
                     params: {
                         api_key: 'e56155409e3774c5176290779eef0727',
                         query: this.title,
@@ -54,28 +55,23 @@ var app = new Vue(
                     .then((response) => {
 
                         const obj = response.data;
-                        this.listMovie.push(obj.results);
+                        
+                        obj.results.forEach(element => {
+                            console.log('elemnet', element)
 
-                        console.log('listMovie' ,this.listMovie)
+                            // if media_type is equal to "movie" push in the listMovie
+                            //  otherwise if media_type is equal to "tv" pusha in the listTvSeries
+                            if( element.media_type == 'movie') {
+                                this.listMovie.push(element);
+                            } else if ( element.media_type == 'tv') {
+                                this.listTvSeries.push(element)
+                            }
+                            
+                        })
+                        console.log('movie' ,this.listMovie)
+                        console.log('tv series', this.listTvSeries)
                     });
-            
-            
-            // search Tv Series
-            axios.get('https://api.themoviedb.org/3/search/tv', {
-                params: {
-                    api_key: 'e56155409e3774c5176290779eef0727',
-                    query: this.title,
-                    page: 1,
-                }
-            })
-                .then((response) => {
-
-                    const obj = response.data;
-                    this.listTvSeries.push(obj.results);
-
-                    console.log('listTvSeries' ,this.listTvSeries)
-                });
-
+                
                 // Reset
                 this.title = '';
                 this.listMovie = [];
