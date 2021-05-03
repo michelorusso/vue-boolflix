@@ -92,7 +92,7 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" movie in listMovie ">
+                        <li class="single-movie" v-for=" (movie, index) in listMovie ">
 
                             <ul class="info-menu">
 
@@ -142,12 +142,19 @@
                                 </li>
                                 <!-- End Overview -->
 
-                                <li>
+                                <!-- Cast -->
+                                <li v-if="arrayCast[index].length > 0">
                                     Cast:
-                                    <span v-for="cast in arrayCast">
-                                        {{ cast }}
+                                    <span v-for="cast in arrayCast[index]" >
+                                        {{ cast }} , 
                                     </span>
-                                </li> 
+                                    etc..
+                                </li>
+
+                                <li v-else>
+                                    Cast: no found.
+                                </li>
+                                <!-- End Cast -->
                                 
 
                             </ul>
@@ -168,7 +175,7 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" tv in listTvSeries ">
+                        <li class="single-movie" v-for=" (tv, index) in listTvSeries ">
 
                             <ul class="info-menu">
 
@@ -217,6 +224,20 @@
                                     <span v-else>{{ tv.overview.substring(0 , 200 ) + '...' }}</span>
                                 </li>
                                 <!-- End Overview -->
+
+                                <!-- Cast -->
+                                <li v-if="arrayCast[index].length > 0">
+                                    Cast:
+                                    <span v-for="cast in arrayCast[index]" >
+                                        {{ cast }} ,
+                                    </span>
+                                    etc...
+                                </li> 
+
+                                <li v-else>
+                                    Cast: no found.
+                                </li>
+                                <!-- End Cast -->
 
                             </ul>
 

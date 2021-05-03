@@ -79,6 +79,7 @@ var app = new Vue(
                 this.title = '';
                 this.listMovie = [];
                 this.listTvSeries = [];
+                this.arrayCast = [];
         },
         // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
         addCast( id , type ){
