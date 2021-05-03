@@ -143,18 +143,23 @@
                                 <!-- End Overview -->
 
                                 <!-- Cast -->
-                                <li v-if="movie.cast.length > 0">
+                                <li>
                                     Cast:
                                     <span v-for="cast in movie.cast" >
                                         {{ cast.name }} , 
                                     </span>
-                                    etc..
-                                </li>
-
-                                <li v-else>
-                                    Cast: no found.
+                                    ...
                                 </li>
                                 <!-- End Cast -->
+
+                                <!-- Genres -->
+                                <li>
+                                    Genres:
+                                    <span v-for="genre in movie.genres">
+                                        {{ genre.name }}
+                                    </span>
+                                </li>
+                                <!-- End Genres -->
                                 
 
                             </ul>
@@ -226,18 +231,21 @@
                                 <!-- End Overview -->
 
                                 <!-- Cast -->
-                                <li v-if="tv.cast.length > 0">
+                                <li>
                                     Cast:
                                     <span v-for="cast in tv.cast" >
                                         {{ cast.name }} ,
                                     </span>
-                                    etc...
+                                    ...
                                 </li> 
-
-                                <li v-else>
-                                    Cast: no found.
-                                </li>
                                 <!-- End Cast -->
+
+                                <li>
+                                    Genres:
+                                    <span v-for="genre in tv.genres">
+                                        {{ genre.name }}
+                                    </span>
+                                </li>
 
                             </ul>
 

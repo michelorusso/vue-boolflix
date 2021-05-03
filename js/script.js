@@ -63,21 +63,21 @@ var app = new Vue(
                             } else if ( element.media_type == 'tv') {
                                 this.listTvSeries.push(element)
                             }   
-
+                            
+                            // function call
                             this.addCast(element);
+                            this.addGenre(element);
                                      
                         });
-                      
+
                         console.log('movie' ,this.listMovie);
                         console.log('tv series', this.listTvSeries);
 
                     });
-                
                 // Reset
                 this.title = '';
                 this.listMovie = [];
                 this.listTvSeries = [];
-                this.arrayCast = [];
         },
         // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
         addCast(movieOrTv){         
@@ -92,10 +92,26 @@ var app = new Vue(
                             let castObj = response.data.cast; 
                             // adding the first 5 returned by the API
                             castObj = castObj.slice( 0 , 5 );
-                            
-                            Vue.set( movieOrTv, 'cast', castObj );                           
-                            console.log('movieOrTv', movieOrTv);
-                            // qui devi fare in modo che vue si accorga della nuova proprietà
+                            // here we make vue notice the new ownership
+                            Vue.set( movieOrTv, 'cast', castObj );    
+
+                    });
+        },
+        addGenre(type) {
+
+            axios.get("https://api.themoviedb.org/3/genre/" + type.media_type + "/list", {
+                        params: {
+                            api_key: 'e56155409e3774c5176290779eef0727',
+                        }
+                })
+                        .then((response) => {
+
+                            let genresObj = response.data.genres; 
+                            // adding the first 5 returned by the API
+                            genresObj = genresObj.slice( 0 , 5 );
+                            // here we make vue notice the new ownership
+                            Vue.set( type , 'genres', genresObj ); 
+                        
                     });
         },
         choiceType(index) {
