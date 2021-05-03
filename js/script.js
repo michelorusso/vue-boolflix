@@ -36,14 +36,13 @@ var app = new Vue(
         listMovie: [],
         listTvSeries: [],
         title: '',
-        cast: [],
+        arrayCast: [],
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
     methods: {
         // searchMovieTv --> function that, when clicked, searches for a movie / TV series based on user input
         searchMovieTv() {
-
             // search Movie or Tv Series
             axios.get('https://api.themoviedb.org/3/search/multi', {
                     params: {
@@ -66,16 +65,13 @@ var app = new Vue(
                                 this.listTvSeries.push(element)
                             }              
 
-                            this.cast = this.addCast( element.id, element.media_type);
-                            console.log('cast', this.cast);                            
+                            this.arrayCast.push(this.addCast( element.id, element.media_type));
+                                     
                         });
-
-                        
-                        
+                      
                         console.log('movie' ,this.listMovie);
                         console.log('tv series', this.listTvSeries);
-                        
-
+                        console.log('cast', this.arrayCast);
 
                     });
                 
@@ -86,7 +82,7 @@ var app = new Vue(
         },
         // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
         addCast( id , type ){
-            let arrayCast = [];
+            let arrayCastObj = [];
 
             axios.get("https://api.themoviedb.org/3/" + type + '/' + id + "/credits", {
                         params: {
@@ -102,11 +98,11 @@ var app = new Vue(
                             
                             castObj.forEach(element => {
 
-                                arrayCast.push(element.name);
+                                arrayCastObj.push(element.name);
 
                             })     
                     });
-            return arrayCast;
+            return arrayCastObj;
         },
         choiceType(index) {
             // standby
