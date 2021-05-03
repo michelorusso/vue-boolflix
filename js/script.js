@@ -36,7 +36,7 @@ var app = new Vue(
         listMovie: [],
         listTvSeries: [],
         title: '',
-        noFound: 'no match found',
+        cast: [],
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
@@ -57,7 +57,6 @@ var app = new Vue(
                         const obj = response.data;
                         
                         obj.results.forEach(element => {
-                            console.log('elemnet', element)
 
                             // if media_type is equal to "movie" push in the listMovie
                             //  otherwise if media_type is equal to "tv" pusha in the listTvSeries
@@ -65,17 +64,49 @@ var app = new Vue(
                                 this.listMovie.push(element);
                             } else if ( element.media_type == 'tv') {
                                 this.listTvSeries.push(element)
-                            }
-                            
-                        })
-                        console.log('movie' ,this.listMovie)
-                        console.log('tv series', this.listTvSeries)
+                            }              
+
+                            this.cast = this.addCast( element.id, element.media_type);
+                            console.log('cast', this.cast);                            
+                        });
+
+                        
+                        
+                        console.log('movie' ,this.listMovie);
+                        console.log('tv series', this.listTvSeries);
+                        
+
+
                     });
                 
                 // Reset
                 this.title = '';
                 this.listMovie = [];
                 this.listTvSeries = [];
+        },
+        // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
+        addCast( id , type ){
+            let arrayCast = [];
+
+            axios.get("https://api.themoviedb.org/3/" + type + '/' + id + "/credits", {
+                        params: {
+                            api_key: 'e56155409e3774c5176290779eef0727',
+                        }
+                })
+                        .then((response) => {
+
+                            let castObj = response.data.cast; 
+                            
+                            // adding the first 5 returned by the API
+                            castObj = castObj.slice( 0 , 5 );
+                            
+                            castObj.forEach(element => {
+
+                                arrayCast.push(element.name);
+
+                            })     
+                    });
+            return arrayCast;
         },
         choiceType(index) {
             // standby
@@ -85,3 +116,4 @@ var app = new Vue(
         
     }
 });
+
