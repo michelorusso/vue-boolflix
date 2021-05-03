@@ -36,7 +36,6 @@ var app = new Vue(
         listMovie: [],
         listTvSeries: [],
         title: '',
-        arrayCast: [],
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
@@ -63,15 +62,14 @@ var app = new Vue(
                                 this.listMovie.push(element);
                             } else if ( element.media_type == 'tv') {
                                 this.listTvSeries.push(element)
-                            }              
+                            }   
 
-                            this.arrayCast.push(this.addCast( element.id, element.media_type));
+                            this.addCast(element);
                                      
                         });
                       
                         console.log('movie' ,this.listMovie);
                         console.log('tv series', this.listTvSeries);
-                        console.log('cast', this.arrayCast);
 
                     });
                 
@@ -82,10 +80,9 @@ var app = new Vue(
                 this.arrayCast = [];
         },
         // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
-        addCast( id , type ){
-            let arrayCastObj = [];
+        addCast(movieOrTv){         
 
-            axios.get("https://api.themoviedb.org/3/" + type + '/' + id + "/credits", {
+            axios.get("https://api.themoviedb.org/3/" + movieOrTv.media_type + '/' + movieOrTv.id + "/credits", {
                         params: {
                             api_key: 'e56155409e3774c5176290779eef0727',
                         }
@@ -93,17 +90,13 @@ var app = new Vue(
                         .then((response) => {
 
                             let castObj = response.data.cast; 
-                            
                             // adding the first 5 returned by the API
                             castObj = castObj.slice( 0 , 5 );
                             
-                            castObj.forEach(element => {
-
-                                arrayCastObj.push(element.name);
-
-                            })     
+                            Vue.set( movieOrTv, 'cast', castObj );                           
+                            console.log('movieOrTv', movieOrTv);
+                            // qui devi fare in modo che vue si accorga della nuova proprietà
                     });
-            return arrayCastObj;
         },
         choiceType(index) {
             // standby

@@ -143,10 +143,10 @@
                                 <!-- End Overview -->
 
                                 <!-- Cast -->
-                                <li v-if="arrayCast[index].length > 0">
+                                <li v-if="movie.cast.length > 0">
                                     Cast:
-                                    <span v-for="cast in arrayCast[index]" >
-                                        {{ cast }} , 
+                                    <span v-for="cast in movie.cast" >
+                                        {{ cast.name }} , 
                                     </span>
                                     etc..
                                 </li>
@@ -226,10 +226,10 @@
                                 <!-- End Overview -->
 
                                 <!-- Cast -->
-                                <li v-if="arrayCast[index].length > 0">
+                                <li v-if="tv.cast.length > 0">
                                     Cast:
-                                    <span v-for="cast in arrayCast[index]" >
-                                        {{ cast }} ,
+                                    <span v-for="cast in tv.cast" >
+                                        {{ cast.name }} ,
                                     </span>
                                     etc...
                                 </li> 
