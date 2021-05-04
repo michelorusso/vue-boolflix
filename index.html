@@ -49,6 +49,16 @@
                 </div>
                 <!-- End Nav-movie-tv -->
 
+                <!-- Selected -->
+                <div class="selected">
+                    <label for="type_genre"></label>
+                    <select class="genre_type" name="genre" id="type_genre" v-model="selectedGenre">
+                        <option value="">Boolflix Original</option>
+                        <option v-for="type in typeGenres" :value="type">{{ type }}</option>
+                    </select>
+                </div>
+                <!-- Selected -->
+
                 <!-- Nav-bar -->
                 <div class="nav-bar">
 
@@ -92,7 +102,9 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" (movie, index) in listMovie ">
+                        <li class="single-movie" 
+                        v-for=" movie in listMovie "
+                        v-if="selectedGenre.length == 0 || selectedGenre == movie.genres ">
 
                             <ul class="info-menu">
 
@@ -156,7 +168,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in movie.genres">
-                                        {{ genre.name }}
+                                        {{ genre }}
                                     </span>
                                 </li>
                                 <!-- End Genres -->
@@ -180,7 +192,9 @@
                     <ul class="menu">
 
                         <!-- Single-movie -->
-                        <li class="single-movie" v-for=" (tv, index) in listTvSeries ">
+                        <li class="single-movie" 
+                        v-for=" tv in listTvSeries "
+                        v-if="selectedGenre.length == 0 || selectedGenre == tv.genres ">
 
                             <ul class="info-menu">
 
@@ -243,7 +257,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in tv.genres">
-                                        {{ genre.name }}
+                                        {{ genre }}
                                     </span>
                                 </li>
 

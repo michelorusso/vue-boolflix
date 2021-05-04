@@ -111,6 +111,23 @@ img {
     line-height: 15px;
 }
 
+/* Selected */
+.selected {
+    margin: 0 15px;
+}
+
+.genre_type {
+    width: 150px;
+    padding: 5px;
+    background-color: rgba(0 , 0, 0, 0);
+    color: grey;
+    border: none;
+    border-bottom: 1px solid rgb(54, 54, 54);
+}
+
+.genre_type:focus {
+    outline: none;
+}
 /* account */
 .account {
     color: white;

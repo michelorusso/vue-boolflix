@@ -36,6 +36,8 @@ var app = new Vue(
         listMovie: [],
         listTvSeries: [],
         title: '',
+        typeGenres: [],
+        selectedGenre: '',
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
@@ -79,7 +81,7 @@ var app = new Vue(
                 this.listMovie = [];
                 this.listTvSeries = [];
         },
-        // addCast -> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
+        // addCast --> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
         addCast(movieOrTv){         
 
             axios.get("https://api.themoviedb.org/3/" + movieOrTv.media_type + '/' + movieOrTv.id + "/credits", {
@@ -90,6 +92,7 @@ var app = new Vue(
                         .then((response) => {
 
                             let castObj = response.data.cast; 
+                            
                             // adding the first 5 returned by the API
                             castObj = castObj.slice( 0 , 5 );
                             // here we make vue notice the new ownership
@@ -97,21 +100,30 @@ var app = new Vue(
 
                     });
         },
-        addGenre(type) {
+        // addGenre --> ask the API which are the genres of the film by adding to our Film / Series tab ONLY the first 5 returned by the API
+        addGenre(type) { 
 
             axios.get("https://api.themoviedb.org/3/genre/" + type.media_type + "/list", {
-                        params: {
-                            api_key: 'e56155409e3774c5176290779eef0727',
+                params: {
+                    api_key: 'e56155409e3774c5176290779eef0727',
                         }
                 })
                         .then((response) => {
 
                             let genresObj = response.data.genres; 
                             // adding the first 5 returned by the API
-                            genresObj = genresObj.slice( 0 , 5 );
-                            // here we make vue notice the new ownership
-                            Vue.set( type , 'genres', genresObj ); 
-                        
+                            genresObj = genresObj.slice( 0 , 5);
+
+                            let newArray = [];
+
+                            genresObj.forEach(element => {
+
+                                newArray.push(element.name)
+                            });
+                            
+                            Vue.set( type, 'genres' , newArray );
+
+                            
                     });
         },
         choiceType(index) {
@@ -119,7 +131,24 @@ var app = new Vue(
         }
     },
     mounted() {
-        
+        // seve all genres in typeGenres
+        axios.get("https://api.themoviedb.org/3/genre/movie/list", {
+                        params: {
+                            api_key: 'e56155409e3774c5176290779eef0727',
+                        }
+                })
+                    .then((response) => {
+
+                        let genresObj = response.data.genres; 
+
+                             genresObj.forEach(element => {
+                                //  if genres are not included in "typeGenres", enter them,  so that there are no duplicates
+                                 if( this.typeGenres.includes(element.name) == false ) {
+                                     this.typeGenres.push(element.name);
+                                 }
+                             })
+                        
+                    });
     }
 });
 
