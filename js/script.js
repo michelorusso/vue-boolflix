@@ -118,9 +118,10 @@ var app = new Vue(
 
                             genresObj.forEach(element => {
 
-                                newArray.push(element.name)
+                                newArray.push(element)
+                                
                             });
-                            
+                            console.log(newArray)
                             Vue.set( type, 'genres' , newArray );
 
                             
