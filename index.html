@@ -104,7 +104,7 @@
                         <!-- Single-movie -->
                         <li class="single-movie" 
                         v-for=" movie in listMovie "
-                        v-if="selectedGenre.length == 0 || movie.genres.includes(selectedGenre) ">
+                        v-if="selectedGenre.length == '' || movie.genres.includes(selectedGenre) ">
 
                             <ul class="info-menu">
 
@@ -168,7 +168,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in movie.genres">
-                                        {{ genre.name }}
+                                        {{ genre }}
                                     </span>
                                 </li>
                                 <!-- End Genres -->
@@ -194,7 +194,7 @@
                         <!-- Single-movie -->
                         <li class="single-movie" 
                         v-for=" tv in listTvSeries "
-                        v-if="selectedGenre.length == 0 || selectedGenre == name in tv.genres ">
+                        v-if="selectedGenre.length == '' || tv.genres.includes(selectedGenre) ">
 
                             <ul class="info-menu">
 
@@ -257,7 +257,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in tv.genres">
-                                        {{ genre.name }}
+                                        {{ genre }}
                                     </span>
                                 </li>
 

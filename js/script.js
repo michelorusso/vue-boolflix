@@ -112,16 +112,22 @@ var app = new Vue(
 
                             let genresObj = response.data.genres; 
                             // adding the first 5 returned by the API
-                            genresObj = genresObj.slice( 0 , 5);
 
+                            console.log('type', type.genre_ids);
+
+                            let genreArray = [];
+                            type.genre_ids.forEach(genre => {
+                                genreArray.push(genre);
+                            });
+
+                            // if( type.gerre_ids == genresObj.id )
                             let newArray = [];
 
-                            genresObj.forEach(element => {
+                            if( genreArray == genresObj.id ){
 
-                                newArray.push(element)
-                                
-                            });
-                            console.log(newArray)
+                                this.newArray.push(genresObj.name)
+                            };
+                            console.log('newarray', newArray)
                             Vue.set( type, 'genres' , newArray );
 
                             
