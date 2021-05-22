@@ -69,6 +69,7 @@ var app = new Vue(
                             // function call
                             this.addCast(element);
                             this.addGenre(element);
+
                                      
                         });
 
@@ -103,35 +104,9 @@ var app = new Vue(
         // addGenre --> ask the API which are the genres of the film by adding to our Film / Series tab ONLY the first 5 returned by the API
         addGenre(type) { 
 
-            axios.get("https://api.themoviedb.org/3/genre/" + type.media_type + "/list", {
-                params: {
-                    api_key: 'e56155409e3774c5176290779eef0727',
-                        }
-                })
-                        .then((response) => {
+            
 
-                            let genresObj = response.data.genres; 
-                            // adding the first 5 returned by the API
-
-                            console.log('type', type.genre_ids);
-
-                            let genreArray = [];
-                            type.genre_ids.forEach(genre => {
-                                genreArray.push(genre);
-                            });
-
-                            // if( type.gerre_ids == genresObj.id )
-                            let newArray = [];
-
-                            if( genreArray == genresObj.id ){
-
-                                this.newArray.push(genresObj.name)
-                            };
-                            console.log('newarray', newArray)
-                            Vue.set( type, 'genres' , newArray );
-
-                            
-                    });
+            // Vue.set( type, 'genres' , newArray );
         },
         choiceType(index) {
             // standby
@@ -149,12 +124,12 @@ var app = new Vue(
                         let genresObj = response.data.genres; 
 
                              genresObj.forEach(element => {
+
                                 //  if genres are not included in "typeGenres", enter them,  so that there are no duplicates
                                  if( this.typeGenres.includes(element.name) == false ) {
-                                     this.typeGenres.push(element.name);
+                                     this.typeGenres.push(element);  
                                  }
                              })
-                        
                     });
     }
 });
