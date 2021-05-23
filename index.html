@@ -32,7 +32,7 @@
 
                 <!--  Logo -->
                 <div class="logo">
-                    <img src="img/c072857f28ffed69c9266a55183f4c20.png" alt="Boolflix">
+                    <a href="file:///D:/booleanesercizi/vue-boolflix/index.html"><img src="img/c072857f28ffed69c9266a55183f4c20.png" alt="Boolflix"></a>
                 </div>
                 <!-- End Logo -->
 
@@ -96,9 +96,10 @@
 
                 <!-- Movie-content -->
                 <div class="movie-content"
-                 v-if="listMovie.length > 0">                  
+                v-if="active === 1 || active === 0"
+                v-if="listMovie.length > 0">                  
                          
-                    <h2>MOVIE</h2>  
+                    <h2 v-if="listMovie.length > 0">MOVIE</h2>  
 
                     <ul class="menu">
 
@@ -116,7 +117,7 @@
 
                                 <li v-else>
                                     <div class="no-poster">
-                                        <img class="key-visual" src="img/c072857f28ffed69c9266a55183f4c20.png" alt="no-poster">
+                                        <img src="img/c072857f28ffed69c9266a55183f4c20.png" alt="no-poster">
                                     </div>
                                 </li>
                                 <!--End Poster -->
@@ -187,9 +188,10 @@
 
                 <!-- TV-content -->
                 <div class="tv-content"
+                v-if="active === 2 || active === 0"
                 v-if="listTvSeries.length > 0">   
 
-                    <h2>TV SERIES</h2>
+                    <h2 v-if="listTvSeries.length > 0">TV SERIES</h2>
 
                     <ul class="menu">
 

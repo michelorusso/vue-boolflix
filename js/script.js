@@ -38,8 +38,7 @@ var app = new Vue(
         title: '',
         typeGenres: [],
         selectedGenre: '',
-        activeMovie: false,
-        activeTv: false,
+        active: 0,
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
@@ -83,6 +82,7 @@ var app = new Vue(
                 this.title = '';
                 this.listMovie = [];
                 this.listTvSeries = [];
+                this.active = 0;
         },
         // addCast --> ask the API which are the actors who are part of the cast by adding to our Film / Series tab ONLY the first 5 returned by the API with Name and Surname
         addCast(movieOrTv){         
@@ -120,7 +120,10 @@ var app = new Vue(
 
         },
         choiceType(index) {
-            
+
+            this.active = index;
+            console.log(this.active);
+
         }
     },
     mounted() {
