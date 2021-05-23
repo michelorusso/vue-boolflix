@@ -38,6 +38,8 @@ var app = new Vue(
         title: '',
         typeGenres: [],
         selectedGenre: '',
+        activeMovie: false,
+        activeTv: false,
         arrayType: ['HOME', 'MOVIE', 'TV SERIES'],
         courentType: 0,
     }, 
@@ -104,12 +106,21 @@ var app = new Vue(
         // addGenre --> ask the API which are the genres of the film by adding to our Film / Series tab ONLY the first 5 returned by the API
         addGenre(type) { 
 
+            let newArray = [];
+            let idGenre = type.genre_ids;
             
+            this.typeGenres.forEach( element => {
 
-            // Vue.set( type, 'genres' , newArray );
+                if(idGenre.includes(element.id)){
+                    newArray.push(element.name);
+                }
+               
+            });
+            Vue.set( type, 'genres' , newArray );
+
         },
         choiceType(index) {
-            // standby
+            
         }
     },
     mounted() {

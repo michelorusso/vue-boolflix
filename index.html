@@ -95,7 +95,8 @@
             <section class="movie-container">
 
                 <!-- Movie-content -->
-                <div class="movie-content" v-if="listMovie.length > 0">                  
+                <div class="movie-content"
+                 v-if="listMovie.length > 0">                  
                          
                     <h2>MOVIE</h2>  
 
@@ -104,7 +105,7 @@
                         <!-- Single-movie -->
                         <li class="single-movie card" 
                         v-for=" movie in listMovie "
-                        v-if="selectedGenre.length == '' || movie.genres.includes(selectedGenre) ">
+                        v-if="selectedGenre.length == '' || movie.genres.includes(selectedGenre.name) ">
 
                             <ul class="info-menu">
 
@@ -168,7 +169,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in movie.genres">
-                                        {{ genre }}
+                                        {{ genre }}..
                                     </span>
                                 </li>
                                 <!-- End Genres -->
@@ -195,7 +196,7 @@
                         <!-- Single-movie -->
                         <li class="single-movie card" 
                         v-for=" tv in listTvSeries "
-                        v-if="selectedGenre.length == '' || tv.genres.includes(selectedGenre) ">
+                        v-if="selectedGenre.length == '' || tv.genres.includes(selectedGenre.name) ">
 
                             <ul class="info-menu">
 
@@ -258,7 +259,7 @@
                                 <li>
                                     Genres:
                                     <span v-for="genre in tv.genres">
-                                        {{ genre }}
+                                        {{ genre }}..
                                     </span>
                                 </li>
 

@@ -214,6 +214,7 @@ h2 {
     top: 0;
     left: 0;
     padding: 0;
+    transition: 1.5s;
 }
 
 .key-visual img {
@@ -233,11 +234,11 @@ h2 {
 }
 
 .single-movie:hover .key-visual {
-    display: none;
+    opacity: 0;
 }
 
 .single-movie:hover .no-poster {
-    display: none;
+    opacity: 0;
 }
 
 /* Vote average */
